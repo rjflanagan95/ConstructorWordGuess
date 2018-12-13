@@ -10,7 +10,6 @@ function Word(currentWord) {
         newLetter.trueCharacter = currentWord[i];
         (letterArray).push(newLetter);
     }
-    console.log(letterArray);
 
     this.stringReturn = function() {
         var dispString = "";
@@ -32,8 +31,4 @@ function Word(currentWord) {
     }
 }
 
-var newWord = new Word("canopy");
-newWord.checkWord("c");
-newWord.checkWord("n");
-newWord.checkWord("o");
-newWord.checkWord("p");
+module.exports = Word;
