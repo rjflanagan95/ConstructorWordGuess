@@ -3,15 +3,12 @@ var inquirer = require("inquirer");
 var newWord;
 var totalGuesses = 12;
 var guessesRemaining;
-var lettersToGuess;
 
 var selectNewWord = function() {
     var wordArray = ["canopy", "octagon", "cucumber", "gazelle", "application", "notebook"];
 
     var randomNum = Math.floor(Math.random() * wordArray.length);
     var wordToGuess = wordArray[randomNum];
-    console.log(wordToGuess);
-    lettersToGuess = wordToGuess.length;
     newWord = new Word(wordToGuess);
     newWord.stringReturn();
     loop();
@@ -23,7 +20,6 @@ var checkGuess = function(guess) {
     if (newWord.checkWord(guess)) {
         guessesRemaining -= 1;
     }
-    
     checkGame();
 }
 
