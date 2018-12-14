@@ -23,8 +23,6 @@ function Word(currentWord) {
     this.checkWord = function(character) {
         // assuming the guess will not match any letters of the word
         var noMatches = true;
-        var wordGuessed = false;
-        var correctLetters = 0;
         // check each Letter object in the array
         for (var i = 0; i < letterArray.length; i++) {
             var currentLetter = letterArray[i];
@@ -37,10 +35,17 @@ function Word(currentWord) {
                 }
             }
         }
+        this.stringReturn();
+        return noMatches;
+    }
+
+    this.checkIfComplete = function() {
+        var wordGuessed = false;
+        var correctLetters = 0;
         // check each letter again and count the number of correctly guessed letters
         for (var i = 0; i < letterArray.length; i++) {
             var currentLetter = letterArray[i];
-            if (currentLetter.letterGuessed(character)) {
+            if (currentLetter.guessed) {
                 correctLetters += 1;
             }
         }
@@ -48,8 +53,7 @@ function Word(currentWord) {
         if (correctLetters === letterArray.length) {
             wordGuessed = true;
         }
-        this.stringReturn();
-        return noMatches;
+        return wordGuessed;
     }
 }
 

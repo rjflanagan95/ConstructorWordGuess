@@ -23,8 +23,7 @@ var checkGuess = function(guess) {
     if (newWord.checkWord(guess)) {
         guessesRemaining -= 1;
     }
-
-    console.log("Guesses left: " + guessesRemaining);
+    
     checkGame();
 }
 
@@ -32,7 +31,7 @@ var checkGame = function() {
     if (guessesRemaining <= 0) {
         console.log("You're out of guesses :(");
         endGame();
-    } else if (newWord.wordGuessed) {
+    } else if (newWord.checkIfComplete()) {
         console.log("You guessed the word!");
         endGame();
     } else {
@@ -62,6 +61,7 @@ var endGame = function() {
 }
 
 var loop = function() {
+    console.log("Guesses left: " + guessesRemaining);
     inquirer.prompt([
         {
             type: "input",
@@ -69,7 +69,12 @@ var loop = function() {
             name: "guess"
         }
     ]).then(function(response) {
-        checkGuess(response.guess);
+        if ((response.guess).length !== 1) {
+            console.log("Input must be one character only!");
+            loop();
+        } else {
+            checkGuess(response.guess);
+        }
     }).catch(function(error) {
         if (error) {
             console.log(error);
