@@ -6,13 +6,14 @@ function Letter() {
         if (input === this.trueCharacter) {
             this.guessed = true;
         }
+        return this.guessed;
     }
 
     this.displayLetter = function() {
         if (this.guessed) {
             return this.trueCharacter;
         } else {
-            return " _ ";
+            return "-";
         }        
     }
 }
